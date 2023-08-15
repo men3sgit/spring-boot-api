@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Form with CSS</title>
+    <style>
+        /* Your CSS styles here */
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Input Form</h1>
+    <form id="myForm">
+        <div class="input-group">
+            <label class="input-label" for="id">id:</label>
+            <input class="input-field" type="text" id="id" name="id" required>
+        </div>
+        <button class="submit-button" type="submit">Submit</button>
+    </form>
+</div>
+<div id="response"></div>
+
+<script>
+    $(document).ready(function() {
+        $('#myForm').submit(function(event) {
+            event.preventDefault();
+            var id = $('#id').val();
+
+            $.ajax({
+                type: 'GET',
+                url: '/api/v1/student/' + id, // Replace with your actual API endpoint
+                contentType: 'application/json',
+                success: function(student) {
+                    $('#response')
+                        .html(
+                            '<div><span>Name: </span>' + student.name + '</div>'
+                            +'<div><span>Email: </span>' + student.email + '</div>'
+                        );
+                },
+                error: function(error) {
+                    $('#response')
+                        .html('Can not found Student with id=' + id
+                        );
+
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
