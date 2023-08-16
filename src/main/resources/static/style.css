@@ -1,0 +1,219 @@
+:root{
+    --gap:28px;
+}
+*{
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+font-family: 'Play', sans-serif;
+font-family: 'Poppins', sans-serif;
+font-family: 'Roboto', sans-serif;
+}
+#logo{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+#app{
+    display: flex;
+    flex-direction:column;
+}
+nav{
+    display:  flex;
+    align-items: center;
+}
+
+#searchInput{
+    height: 40px;
+    width: 400px;
+    border-radius: 30px;
+    padding: 16px;
+    border: none;
+    background-color: #eee;
+}
+.options{
+    display: flex;
+    justify-content: center;
+}
+ul{
+    display: flex;
+}
+ul li{
+    margin: 8px 16px 0px 16px;
+    list-style: none;
+    padding-bottom: 8px;
+    border-bottom: solid 2px white;
+}
+ul li:hover{
+    border-bottom: solid 2px black;
+}
+.theme-text{
+    text-decoration: none;
+    font-size: 16px;
+    color: #999;
+}.theme-text:hover{
+    color: #222;
+
+}
+.theme-image-container-main{
+    position: relative;
+    width: 100%;
+    height: 700px;
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 20px; 
+}
+.theme-image-container-main .glass{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(8, 8, 8, 0.3);
+}
+.theme-image-container-main img{
+width: 100%;
+height: auto;
+}
+
+
+.theme-image-content{
+    width: 40%;
+    position: absolute;
+    top:20%;
+    left: 10%;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+.theme-image-content h1{
+    font-size: 64px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+.theme-image-content span{
+    font-size: 24px;
+    font-weight: 200;
+}
+.theme-image-vm{
+    position:absolute;
+    text-decoration: none;
+    color: aliceblue;
+    font-size: 16px;
+    font-weight: 500;
+    bottom: 20px;
+    left: 20px;
+    cursor: zoom-in;
+}
+
+
+#gallery-container{
+    display: flex;
+    justify-content: center;
+}
+
+#gallery-container .grc  {
+    display: flex;
+    flex-direction: column;
+    width: 28%; 
+
+}
+.grid-container-col-2 {
+    margin: 0px var(--gap); 
+}
+
+/* Style for grid items (placeholders) */
+.grid-item {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    margin-bottom: var(--gap);
+}
+.glass-item{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 99%;
+}
+
+.image-container img {
+    max-width: 100%;
+    cursor: pointer;
+}
+.grid-item img{
+    max-width: 100%;
+    height: auto;
+}
+.inside-btn{
+    position: absolute;
+    background-color:aliceblue;
+    color: #606162;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    display: none;
+    border: none;
+    width: 48px;
+    height: 36px;
+    padding: 10px;
+  }
+    
+  .heart-btn{
+    top: 24px;
+    right: 90px;
+    /* color: #ff0000;  */
+    /* Red color for heart, you can change it as needed */
+  }
+  .add-btn{
+    top: 24px;
+    right: 30px;
+  }
+.download-btn {
+    bottom: 36px;
+    right: 30px;
+    
+  }
+  .author-info {
+    position: absolute;
+    bottom: 24px;
+    left: 30px;
+    display: none;
+    align-items: center; /* Align items vertically in the center */
+    margin-bottom: 10px; /* Optional: Add some spacing between author-info elements */
+  }
+  
+  .avatar-container {
+    width: 40px; /* Adjust the width of the avatar container as needed */
+    height: 40px; /* Adjust the height of the avatar container as needed */
+    border-radius: 50%;
+    overflow: hidden; /* Clip the image to the rounded shape */
+    margin-right: 10px; /* Optional: Add some spacing between the avatar and the name */
+  }
+  
+  .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+  }
+  
+  .name {
+    font-size: 16px; /* Adjust the font size as needed */
+    color: aliceblue;
+}
+
+.grid-item:hover .inside-btn{
+    display: block;
+}
+
+.grid-item:hover .glass-item{
+    display: block;
+    background-color: rgba(8, 8, 8, 0.2);
+    cursor:zoom-in;
+}
+.grid-item:hover .author-info{
+    display: flex;
+}
+
+  
