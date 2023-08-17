@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Photo View</title>
+</head>
+<body>
+<h1>Photo Details</h1>
+<ul>
+    <li th:each="photo : ${photos}">
+        <p>Title: <span th:text="${photo.title}"></span></p>
+        <p>Description: <span th:text="${photo.description}"></span></p>
+    </li>
+</ul>
+</body>
+</html>

@@ -22,8 +22,6 @@ public class FileUploadController {
     @Autowired
     private IStorageService storageService;
 
-
-
     @PostMapping
     public ResponseEntity<String> registerNewImage(@RequestParam("file") MultipartFile file) throws Exception {
         try {
@@ -44,6 +42,8 @@ public class FileUploadController {
             throw new Exception("Cannot read file", exception);
         }
     }
+
+
 
 
 }

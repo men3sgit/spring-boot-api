@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Flash</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Play&family=Poppins:wght@200;300;400&family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        /* Add some custom styles for the clear button */
+        .search-container {
+            position: relative;
+        }
+        .clear-button {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+            pointer-events: none;
+        }
+        .clear-button:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation -->
+<div id="app">
+    <header>
+        <nav>
+            <a href="#">
+                <img id="logo" src="images/thunder.jpg">
+            </a>
+            <form id="searchForm">
+                <div class="search-container">
+                    <input type="search" id="searchInput" name="q" placeholder="Search high-resolution images">
+                    <!-- Add the clear button -->
+                </div>
+            </form>
+        </nav>
+    </header>
+    <div>
+        <h1>File Upload Form</h1>
+            <label for="file">Select a file:</label>
+            <input type="file" id="file" name="file" accept=".jpg, .jpeg, .png, .gif">
+            <br>
+            <button onclick="uploadFile()">Upload</button>
+    </div>
+    <div class="options">
+        <ul>
+            <li><a class="theme-text" href="#" aria-current="page">Blue</a></li>
+            <li><a class="theme-text" href="#" aria-current="page">On the Lake</a></li>
+            <li><a class="theme-text" href="#" aria-current="page">Wallpapers</a></li>
+            <li><a class="theme-text" href="#" aria-current="page">3D Renders</a></li>
+            <li><a class="theme-text" href="#" aria-current="page">Nature</a></li>
+            <li><a class="theme-text" href="#" aria-current="page">Textures & Patterns</a></li>
+            <li><a class="theme-text" href="#" aria-current="page">Architecture & Interiors</a></li>
+            <li><a class="theme-text" href="#" aria-current="page">Film</a></li>
+            <li><a class="theme-text" href="#" aria-current="page">Street Photography</a></li>
+        </ul>
+    </div>
+    <div class="theme-image-container">
+        <div class="theme-image-container-main">
+            <div class="glass"></div>
+            <img src="images/nature/nature-1.jpg" alt="this is a image">
+            <a class="theme-image-vm"href="#">Photo</a>
+        </div>
+        <div class="theme-image-content">
+            <h1>Blue</h1>
+            <span>In a colorful world, sometimes monochrome is the most striking of all.
+                Colors convey so much and choosing a single one can pack a powerful punch.
+                We chose blue—maybe you can guess why? We hope this collection inspires your most colorful ideas!
+            </span>
+        </div>
+    </div>
+
+    <!---====================================================GALLERY=====================================================--->
+    <div id="gallery-container">
+        <div class="grid-container-col-1 grc" id="col1">
+                    <div th:each="photo : ${photos}" class="grid-item">
+                        <div class="glass-item"></div>
+                        <img  th:src="${photo.getPath()}" th:alt="${photo.getDescription()}">
+                        <button class="inside-btn heart-btn"><i class="fa-solid fa-heart"></i></button>
+                        <button class="inside-btn add-btn"><i class="fa-solid fa-plus"></i></button>
+                        <button class="inside-btn download-btn"><i class="fa-sharp fa-solid fa-arrow-down"></i></button>
+                        <div class="author-info">
+                            <div class="avatar-container">
+                                <a class="avatar" href="#">
+                                    <img src="images/amigoscode.jpg" alt="Author avatar">
+                                </a>
+                            </div>
+                            <span class="name">Amigoscode</span>
+                        </div>
+                    </div>
+        </div>
+
+
+
+
+
+
+        <div class="grid-container-col-2 grc">
+        </div>
+
+
+        <div class="grid-container-col-3 grc">
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    // Get references to the input field and the clear button
+    const searchInput = document.getElementById('searchInput');
+    const clearButton = document.querySelector('.clear-button');
+
+    // Handle click on the clear button
+    clearButton.addEventListener('click', function() {
+        searchInput.value = ''; // Clear the input field
+        searchInput.focus(); // Set focus back to the input field
+    });
+
+    // Show/hide the clear button based on the input field's content
+    searchInput.addEventListener('input', function() {
+        if (searchInput.value.trim() !== '') {
+            clearButton.style.pointerEvents = 'auto'; // Show the clear button
+        } else {
+            clearButton.style.pointerEvents = 'none'; // Hide the clear button
+        }
+    });
+
+        function uploadFile() {
+        const fileInput = document.getElementById('file');
+        const file = fileInput.files[0];
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+         fetch('/upload', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {
+            var newChildElement = document.createElement("p");
+            newChildElement.textContent = "This is a new paragraph.";
+            const col1 = document.getElementById('col1');
+            col1.appendChild(newChildElement);
+        console.log('File uploaded successfully:', data);
+    })
+        .catch(error => {
+        console.error('Error uploading file:', error);
+    });
+    }
+</script>
+</html>

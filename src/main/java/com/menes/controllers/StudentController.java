@@ -23,7 +23,8 @@ public class StudentController {
             @PathVariable("studentId") Long studentId){
         return studentService.getStudentById(studentId);
     }
-    @GetMapping
+
+    @GetMapping(path = "ndc")
     public List<StudentDTO> getStudents() {
         return studentService.getStudentList();
     }
@@ -54,4 +55,5 @@ public class StudentController {
         return new MyResponse(200,"success",
                 studentService.getNames(type));
     }
+
 }
